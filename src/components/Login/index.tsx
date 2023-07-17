@@ -16,7 +16,7 @@ const Login = () => {
         <Card>
           <CardContent sx={{ textAlign: "center" }}>
             <Typography variant="h3" sx={{ my: 2 }}>
-              Quizz
+              AWS Quizz
             </Typography>
             <Box
               sx={{

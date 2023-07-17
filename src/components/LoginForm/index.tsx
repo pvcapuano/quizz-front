@@ -2,6 +2,7 @@
 import React from "react";
 import useForm from "@/hooks/useForm";
 import { TextField, Button } from "@mui/material";
+import { error } from "console";
 
 const getFreshModel = () => ({
   name: "",
@@ -9,11 +10,22 @@ const getFreshModel = () => ({
 });
 
 const LoginForm = () => {
-  const { values, errors, handleInputChange } = useForm(getFreshModel);
+  const { values, errors, setErrors, handleInputChange } =
+    useForm(getFreshModel);
 
   const login = (e) => {
     e.preventDefault();
-    console.log(values);
+
+    if (validate()) console.log(values);
+  };
+
+  const validate = () => {
+    let temp = {};
+    temp.email = /^$|.+@.+..+/.test(values.email) ? "" : "Email is not valid.";
+    temp.name = values.name != "" ? "" : "This field is required";
+
+    setErrors(temp);
+    return Object.values(temp).every((x) => x == "");
   };
 
   return (
@@ -24,6 +36,7 @@ const LoginForm = () => {
         variant="outlined"
         value={values.email}
         onChange={handleInputChange}
+        {...(errors.email && { error: true, helperText: errors.email })}
       />
       <TextField
         label="Name"
@@ -31,6 +44,7 @@ const LoginForm = () => {
         variant="outlined"
         value={values.name}
         onChange={handleInputChange}
+        {...(errors.name && { error: true, helperText: errors.name })}
       />
       <Button
         type="submit"
