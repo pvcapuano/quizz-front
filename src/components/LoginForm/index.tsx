@@ -4,6 +4,7 @@ import useForm from "@/hooks/useForm";
 import { TextField, Button } from "@mui/material";
 import { error } from "console";
 import { ENDPOINTS, createAPIEndpoint } from "@/api";
+import { useStateContext } from "@/hooks/useStateContext";
 
 const getFreshModel = () => ({
   name: "",
@@ -11,6 +12,7 @@ const getFreshModel = () => ({
 });
 
 const LoginForm = () => {
+  const { context, setContext } = useStateContext();
   const { values, errors, setErrors, handleInputChange } =
     useForm(getFreshModel);
 
@@ -20,7 +22,10 @@ const LoginForm = () => {
     if (validate()) {
       createAPIEndpoint(ENDPOINTS.participant)
         .post(values)
-        .then((res) => console.log(res))
+        .then((res) => {
+          setContext({ participantId: res.data.participantId });
+          console.log(context);
+        })
         .catch((err) => console.log(err));
     }
   };
