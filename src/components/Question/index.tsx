@@ -1,10 +1,10 @@
 import { useStateContext } from "@/hooks/useStateContext";
 import React from "react";
 
-const Question = () => {
+const Quizz = () => {
   const { context, setContext } = useStateContext();
 
-  return <div>question</div>;
+  return <div>Quizz</div>;
 };
 
-export default Question;
+export default Quizz;
