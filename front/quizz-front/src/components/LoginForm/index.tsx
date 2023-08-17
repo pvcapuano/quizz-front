@@ -5,11 +5,6 @@ import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import useStateContext from "../../hooks/useStateContext";
 
-type FormValues = {
-  name: string;
-  email: string;
-};
-
 const getFreshModel = () => ({
   name: "",
   email: "",
@@ -22,7 +17,7 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  const login = (e) => {
+  const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (validate())
@@ -38,7 +33,7 @@ const LoginForm = () => {
   };
 
   const validate = () => {
-    let temp = {};
+    const temp: { [key: string]: string } = {};
     temp.email = /^$|.+@.+..+/.test(values.email) ? "" : "Email is not valid.";
     temp.name = values.name != "" ? "" : "This field is required";
 
