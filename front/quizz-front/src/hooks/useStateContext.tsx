@@ -5,8 +5,6 @@ import {
   useState,
   useEffect,
   ReactNode,
-  SetStateAction,
-  Dispatch,
 } from "react";
 
 interface ContextType {
@@ -17,7 +15,7 @@ interface ContextType {
 
 interface StateContextType {
   context: ContextType;
-  setContext: Dispatch<SetStateAction<ContextType>>;
+  setContext: (obj: Partial<ContextType>) => void;
   resetContext: () => void;
 }
 
@@ -58,7 +56,7 @@ const getFreshContext = (): ContextType => {
   }
 };
 
-export default function useStateContext(): StateContextType {
+export default function useStateContext() {
   const contextValue = useContext(stateContext);
   if (!contextValue) {
     throw new Error("useStateContext must be used within a StateProvider");
@@ -67,7 +65,9 @@ export default function useStateContext(): StateContextType {
   const { context, setContext } = contextValue;
   return {
     context,
-    setContext,
+    setContext: (obj: Partial<ContextType>) => {
+      setContext({ ...context, ...obj });
+    },
     resetContext: () => {
       localStorage.removeItem("context");
       setContext(getFreshContext());
@@ -86,9 +86,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
     localStorage.setItem("context", JSON.stringify(context));
   }, [context]);
 
-  const value: StateContextType = {
+  const stateContextValue: StateContextType = {
     context,
-    setContext,
+    setContext: (obj: Partial<ContextType>) => {
+      setContext({ ...context, ...obj });
+    },
     resetContext: () => {
       localStorage.removeItem("context");
       setContext(getFreshContext());
@@ -96,6 +98,8 @@ export function ContextProvider({ children }: ContextProviderProps) {
   };
 
   return (
-    <stateContext.Provider value={value}>{children}</stateContext.Provider>
+    <stateContext.Provider value={stateContextValue}>
+      {children}
+    </stateContext.Provider>
   );
 }

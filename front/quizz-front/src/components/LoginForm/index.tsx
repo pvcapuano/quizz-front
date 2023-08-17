@@ -20,9 +20,14 @@ const LoginForm = () => {
   const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (validate())
+    if (validate()) {
+      const postData = {
+        name: values.name,
+        email: values.email,
+      };
+
       createAPIEndpoint(ENDPOINTS.participant)
-        .post(values)
+        .post(postData)
         .then((res) => {
           setContext({ participantId: res.data.participantId });
           console.log(res);
@@ -30,6 +35,7 @@ const LoginForm = () => {
           navigate("/questions");
         })
         .catch((err) => console.log(err));
+    }
   };
 
   const validate = () => {
