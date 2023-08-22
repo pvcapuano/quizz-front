@@ -1,5 +1,6 @@
 import { createAPIEndpoint } from "../../api/index";
 import { ENDPOINTS } from "../../constants/config";
+import { useEffect } from "react";
 
 import useForm from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +12,16 @@ const getFreshModel = () => ({
 });
 
 const LoginForm = () => {
-  const { context, setContext } = useStateContext();
+  const { context, setContext, resetContext } = useStateContext();
   const { values, errors, setErrors, handleInputChange } =
     useForm(getFreshModel);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    resetContext();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const login = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
