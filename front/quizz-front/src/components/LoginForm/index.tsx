@@ -57,7 +57,7 @@ const LoginForm = () => {
         className={`border p-2 mb-2 ${errors.email ? "border-red-500" : ""}`}
         type="text"
         name="email"
-        placeholder="Email"
+        placeholder="E-mail"
         value={values.email}
         onChange={handleInputChange}
       />
@@ -66,7 +66,7 @@ const LoginForm = () => {
         className={`border p-2 mb-2 ${errors.name ? "border-red-500" : ""}`}
         type="text"
         name="name"
-        placeholder="Name"
+        placeholder="Nome"
         value={values.name}
         onChange={handleInputChange}
       />

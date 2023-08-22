@@ -10,7 +10,7 @@ import {
 interface ContextType {
   participantId: number;
   timeTaken: number;
-  selectedOptions: string[];
+  selectedOptions: { qnId: number; selected: number }[];
 }
 
 interface StateContextType {
