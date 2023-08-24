@@ -9,7 +9,6 @@ interface Question {
   qnId: number;
   qnInWords: string;
   options: string[];
-  imageName?: string | null;
 }
 
 const Questions = () => {
@@ -66,7 +65,7 @@ const Questions = () => {
 
   return qns.length !== 0 ? (
     <div className="max-w-3xl mx-auto mt-5">
-      <div className="bg-white p-4 rounded-lg shadow">
+      <div className="bg-white p-4 rounded-lg shadow-2xl">
         <h2 className="text-lg font-semibold mb-2">
           Questão {qnIndex + 1} de 5
         </h2>

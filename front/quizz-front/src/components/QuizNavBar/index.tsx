@@ -15,10 +15,10 @@ export default function Layout() {
       <header className="sticky top-0 bg-slate-700 text-white">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between h-16">
-            <h1 className="text-2xl uppercase font-bold">Quizz</h1>
+            <h1 className="text-2xl uppercase font-bold">AWS Quizz</h1>
             <button
               onClick={logout}
-              className="text-white px-4 py-2 rounded-2xl bg-slate-900"
+              className="text-gray-100 text-sm font-bold px-4 py-2 uppercase rounded-2xl bg-slate-900"
             >
               Logout
             </button>
