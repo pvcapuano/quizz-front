@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import useStateContext from "../../hooks/useStateContext";
 
-export default function Layout() {
+const Layout = () => {
   const { resetContext } = useStateContext();
   const navigate = useNavigate();
 
@@ -12,7 +12,7 @@ export default function Layout() {
 
   return (
     <>
-      <header className="sticky top-0 bg-slate-700 text-white">
+      <header className="sticky top-0 bg-slate-800 text-white">
         <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between h-16">
             <h1 className="text-2xl uppercase font-bold">AWS Quizz</h1>
@@ -32,4 +32,6 @@ export default function Layout() {
       </main>
     </>
   );
-}
+};
+
+export default Layout;
