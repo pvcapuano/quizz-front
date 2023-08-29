@@ -79,7 +79,7 @@ const LoginForm = () => {
       {errors.name && <span className="text-red-500">{errors.name}</span>}
       <button
         type="submit"
-        className="bg-gray-900 text-gray-100 uppercase py-2 px-4 rounded mt-2"
+        className="bg-slate-800 text-gray-100 uppercase py-2 px-4 rounded mt-2"
       >
         Iniciar
       </button>
